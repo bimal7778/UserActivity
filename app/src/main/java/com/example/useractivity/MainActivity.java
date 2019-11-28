@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recyclerView = findViewById(R.id.recyclerViw);
+        recyclerView = findViewById(R.id.recyclerView);
 
         /* have to create a interface to fetch data from Database */
 

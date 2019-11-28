@@ -1,6 +1,7 @@
 package com.example.useractivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,7 +39,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
 
     @Override
     public void onBindViewHolder(@NonNull ContactsViewHolder holder, final int position) {
-        Contacts contacts = contactsList.get(position);
+        final Contacts contacts = contactsList.get(position);
 
         Picasso.get()
                 .load(contacts.getImage())
@@ -61,6 +62,17 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
                 notifyItemRemoved(position);
                 notifyItemRangeChanged(position,contactsList.size());
                 Toast.makeText(mContext,"Removed : " + itemLabel,Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        holder.imgProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext,DetailActivity.class);
+                intent.putExtra("name",contacts.getName());
+                intent.putExtra( "address",contacts.getAddress());
+                intent.putExtra( "profile",contacts.getImage());
+                mContext.startActivity(intent);
             }
         });
     }
